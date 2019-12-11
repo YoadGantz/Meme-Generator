@@ -10,35 +10,38 @@
 </head>
 
 <body onload="init()">
-    <header>
-        <nav class="navbar-container">
+    <header class="flex align-center container">
+        <nav class="navbar flex space-between">
             <h1 class="logo">Meme Gen</h1>
-            <ul class="tabs">
-                <li class="gallery-tab">Gallery</li>
-                <li class="memes-tab">Memes</li>
-                <li class="about-tab">About</li>
+            <ul class="tabs flex align-center clean-list">
+                <li class="gallery-tab"><a class="menu-option flex align-center justify-center active" onclick="onActive(this)">Gallery</a></li>
+                <li class="memes-tab"><a class="menu-option flex align-center justify-center" onclick="onActive(this)">Memes</a></li>
+                <li class="about-tab"><a class="menu-option flex align-center justify-center" onclick="onActive(this)">About</a></li>
             </ul>
         </nav>
     </header>
-    <div class="gallery-container">
+    <div class="gallery-container container">
         <section class="search-keywords">
-            <form action="" onsubmit="">
-                <input type="search" name="" id="keywards-searcher">
+            <form action="" onsubmit="onSubmitForm()">
+                <input type="search" value="Search" class="keywords-searcher">
             </form>
             <div class="keywords">
-
+                
             </div>
         </section>
         <div class="gallery-images grid">
 
         </div>
     </div>
-    <div class="editor-container">
-        <canvas id="my-canvas" width="500" height="500" onclick="draw(event)">
-            Update your browser to enjoy canvas!
-        </canvas>
-        <label for="text-input">Text Line</label>
-        <input type="text" name="" id="text-input" onkeyup="writeLineToCanvas()">
+    <div class="editor-container flex">
+        <div class="canvas-container">
+            <canvas id="my-canvas" width="500" height="500" onclick="draw(event)">
+                Update your browser to enjoy canvas!
+            </canvas>
+        </div>
+        <form class="meme-form" onsubmit="onSubmitForm(event)">
+            
+        </form>
     </div>
     <script src="./js/storageService.js"></script>
     <script src="./js/galleryController.js"></script>
