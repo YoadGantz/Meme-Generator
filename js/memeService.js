@@ -1,5 +1,6 @@
 const gKeywordsConterMap = { 'happy': 12, 'funny puk': 1 }
 const gImgs = [];
+let gSavedMemes;
 let gNextId = 1;
 let gMeme = {
     selectedImgId: 1,
@@ -118,9 +119,9 @@ function deleteTextLine() {
     gMeme.selectedTxtIdx= (gMeme.selectedTxtIdx-1 + gMeme.txts.length)%gMeme.txts.length;
 }
 
-function addTextLine(posY, posX) {
+function addTextLine(posY, posX, input) {
     let pos = {x: posX, y: posY}
-    let text = {line: '', size: 40, font: 'Impact', align:'center', color:'white', pos}
+    let text = {line: input, size: 40, font: 'Impact', align:'center', color:'white', pos}
     gMeme.txts.push(text)
     gMeme.selectedTxtIdx = gMeme.txts.length-1;
 }
@@ -142,4 +143,25 @@ function changeAlignText(value) {
 
 function setTextLinePosY(idx, posY) {
     gMeme.txts[idx].pos.y = posY;    
+}
+
+function getNumOfLines() {
+    return gMeme.txts.length
+}
+
+function saveMeme(data) {
+    gSavedMemes.push(data);
+    saveData();
+}
+
+function saveData() {
+    saveToStorage('gSavedMemes', gSavedMemes);
+}
+
+function getSavedMemes() {
+    return gSavedMemes;
+}
+
+function loadData() {
+    gSavedMemes = loadFromStorage('gSavedMemes', [])
 }

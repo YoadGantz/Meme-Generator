@@ -19,9 +19,9 @@
             </div>
             <ul class="tabs flex align-center clean-list">
                 <li class="tab gallery-tab"><a class="menu-option flex align-center justify-center active"
-                        onclick="onActive(this)">Gallery</a></li>
+                        onclick="onGalleryTab(this)">Gallery</a></li>
                 <li class="tab memes-tab"><a class="menu-option flex align-center justify-center"
-                        onclick="onActive(this)">Memes</a></li>
+                        onclick="onMemesTab(this)">Memes</a></li>
                 <li class="tab about-tab"><a class="menu-option flex align-center justify-center"
                         onclick="onActive(this)">About</a></li>
             </ul>
@@ -41,53 +41,79 @@
         </div>
     </div>
     <div class="editor-container wrap">
+        <!-- <div class="markers-container"></div> -->
         <div class="canvas-container flex align-center justify-center">
             <canvas id="my-canvas" width="100" height="100">
                 Update your browser to enjoy canvas!
             </canvas>
         </div>
         <div class="meme-form-container flex column align-center justify-center">
-            <form class="meme-form" onsubmit="onSubmitForm(event)">
+            <form class="meme-form" action="" method="POST" enctype="multipart/form-data"
+                onsubmit="uploadImg(this, event)">
                 <div class="text-input-container flex justify-center align-center">
 
                 </div>
                 <div class="text-buttons-container flex align-center justify-center">
-                    <button class="changeTextLine"><img
+                    <button class="change-text-line" title="Change text line"><img
                             src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"
                             onclick="onChangeTextLine()"></button>
-                    <button class="addTextLine"><img src="./icons/add.png" onclick="onAddTextLine()"></button>
-                    <button class="deleteTextLine"><img src="./icons/trash.png" onclick="onDeleteTextLine()"></button>
+                    <button class="add-text-line" title="Add text line"><img src="./icons/add.png"
+                            onclick="onAddTextLine()"></button>
+                    <button class="delete-text-line" title="delete text line"><img src="./icons/trash.png"
+                            onclick="onDeleteTextLine()"></button>
                 </div>
                 <div class="style-buttons-container grid">
-                    <button class="upSizeFont"><img src="./icons/increaseFont.png"
+                    <button class="up-size-font" title="Increase font size"><img src="./icons/increaseFont.png"
                             onclick="onChangeFontSize(+2)"></button>
-                    <button class="downSizeFont"><img src="./icons/decreaseFont.png"
+                    <button class="down-size-font" title="Decrease font size"><img src="./icons/decreaseFont.png"
                             onclick="onChangeFontSize(-2)"></button>
-                    <button class="upTextPos"><img src="./icons/upTextArrow.png" onclick="onChangeLinePos(-2)"></button>
-                    <button class="downTextPos"><img src="./icons/downTextArrow.png"
+                    <button class="up-text-pos" title="Move text up"><img src="./icons/upTextArrow.png"
+                            onclick="onChangeLinePos(-2)"></button>
+                    <button class="down-text-pos" title="Move text down"><img src="./icons/downTextArrow.png"
                             onclick="onChangeLinePos(+2)"></button>
-                    <button class="align-left"><img src="./icons/align-to-left.png"
+                    <button class="align-left" title="Align left"><img src="./icons/align-to-left.png"
                             onclick="onChangeAlignText('left')"></button>
-                    <button class="align-center"><img src="./icons/align-to-center.png"
+                    <button class="align-center" title="Align center"><img src="./icons/align-to-center.png"
                             onclick="onChangeAlignText('center')"></button>
-                    <button class="align-right"><img src="./icons/align-to-right.png"
+                    <button class="align-right" title="Align right"><img src="./icons/align-to-right.png"
                             onclick="onChangeAlignText('right')"></button>
                     <select class="font-types" onchange="onChangeFontType(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Helvetica">Helvetica</option>
                         <option value="David">David</option>
                     </select>
-                    <label for="font-color" class="font-color"><img src="./icons/paint-board-and-brush.png" /></label>
+                    <label for="font-color" class="font-color" title="Font color"><img
+                            src="./icons/paint-board-and-brush.png" /></label>
                     <input type="color" id="font-color" onchange="onChangeFontColor()">
-                    <label for="stroke-color" class="stroke-color"><img src="./icons/text-stroke.png" /></label>
+                    <label for="stroke-color" class="stroke-color" title="Stroke color"><img
+                            src="./icons/text-stroke.png" /></label>
                     <input type="color" id="stroke-color" onchange="onChangeStrokeColor()">
+                </div>
+                <input name="img" id="imgData" type="hidden" />
+                <div class="save-meme-container flex space-between">
+                    <div class="share-container">
+                        <button class="btn disabled" disabled>Share</button>
+                    </div>
+                    <button class="save-btn flex align-center space-around" onclick="onSaveMeme()">Save</button>
+                    <button class="download-btn flex align-center space-around" onclick="downloadCanvas(this)"
+                        download="my-canvas.jpg">
+                        <a class="download" onclick="downloadCanvas(this)" download="my-canvas.jpg">
+                            Download
+                        </a>
+                    </button>
                 </div>
             </form>
         </div>
+    </div>
+    <div class="saved-memes-container container">
+        <div class="saved-memes grid">
 
+        </div>
     </div>
     <script src="./js/storageService.js"></script>
+    <script src="./js/upload-service.js"></script>
     <script src="./js/galleryController.js"></script>
+    <script src="./js/savedMemesController.js"></script>
     <script src="./js/memeService.js"></script>
     <script src="./js/memeController.js"></script>
 </body>

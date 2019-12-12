@@ -1,6 +1,7 @@
 'use strict'
 
 function init() {
+    loadData();
     createImages();
     renderGallery();
 }
@@ -13,6 +14,13 @@ function renderGallery() {
         return imgHTML;
     })
     elGalleryImg.innerHTML = imgHTMLs.join('')
+}
+
+function onGalleryTab(elOpt) {
+    onActive(elOpt);
+    document.querySelector('.gallery-container').style.display = 'block';
+    document.querySelector('.saved-memes-container').style.display = 'none';
+    document.querySelector('.editor-container').classList.remove('flex');
 }
 
 function onActive(elOpt) {

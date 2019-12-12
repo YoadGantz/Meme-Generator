@@ -5,6 +5,7 @@ let gCtx, gImg
 
 function onImgClicked(elImg) {
     document.querySelector('.gallery-container').style.display = 'none';
+    document.querySelector('.saved-memes-container').style.display = 'none';
     document.querySelector('.editor-container').classList.add('flex');
     let elMemeFormCont = document.querySelector('.meme-form-container')
     let imgId = +elImg.id;
@@ -81,8 +82,10 @@ function drawImg() {
 
 function writeLineToCanvas() {
     let elTextInput = document.querySelector('#text-input');
+    let numOfLines = getNumOfLines();
+    if (!numOfLines) onAddTextLine(elTextInput.value);
     setTextLine(elTextInput.value);
-    renderCanvas()
+    renderCanvas();
 }
 
 function onChangeLinePos(diff) {
@@ -116,10 +119,10 @@ function onChangeFontType(fontType) {
     renderCanvas();
 }
 
-function onAddTextLine() {
+function onAddTextLine(input = '') {
     let canvasHeightCenter = gCanvas.height / 2
     let canvasWidthCenter = gCanvas.width / 2
-    addTextLine(canvasHeightCenter, canvasWidthCenter);
+    addTextLine(canvasHeightCenter, canvasWidthCenter, input);
     renderCanvas();
     renderForm();
 }
@@ -137,7 +140,7 @@ function renderForm() {
     let elTextInputCont = document.querySelector('.text-input-container');
     let strHTML = `<input class="text-input" type="text" value="${value}" id="text-input"
     oninput="writeLineToCanvas()">`
-    elTextInputCont.innerHTML = strHTML
+    elTextInputCont.innerHTML = strHTML    
 }
 
 function onChangeFontColor() {
@@ -155,4 +158,14 @@ function onChangeStrokeColor() {
 function onChangeAlignText(value) {
     changeAlignText(value)
     renderCanvas();
+}
+
+function downloadCanvas(elLink) {
+    const data = gCanvas.toDataURL('image/jpeg')
+    elLink.href = data
+}
+
+function onSaveMeme() {
+    const data = gCanvas.toDataURL('image/jpeg')
+    saveMeme(data)
 }
