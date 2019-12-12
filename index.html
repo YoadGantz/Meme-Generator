@@ -14,9 +14,12 @@
         <nav class="navbar flex space-between">
             <h1 class="logo">Meme Gen</h1>
             <ul class="tabs flex align-center clean-list">
-                <li class="gallery-tab"><a class="menu-option flex align-center justify-center active" onclick="onActive(this)">Gallery</a></li>
-                <li class="memes-tab"><a class="menu-option flex align-center justify-center" onclick="onActive(this)">Memes</a></li>
-                <li class="about-tab"><a class="menu-option flex align-center justify-center" onclick="onActive(this)">About</a></li>
+                <li class="gallery-tab"><a class="menu-option flex align-center justify-center active"
+                        onclick="onActive(this)">Gallery</a></li>
+                <li class="memes-tab"><a class="menu-option flex align-center justify-center"
+                        onclick="onActive(this)">Memes</a></li>
+                <li class="about-tab"><a class="menu-option flex align-center justify-center"
+                        onclick="onActive(this)">About</a></li>
             </ul>
         </nav>
     </header>
@@ -26,22 +29,58 @@
                 <input type="search" value="Search" class="keywords-searcher">
             </form>
             <div class="keywords">
-                
+
             </div>
         </section>
         <div class="gallery-images grid">
 
         </div>
     </div>
-    <div class="editor-container flex">
-        <div class="canvas-container">
+    <div class="editor-container">
+        <div class="canvas-container flex align-center justify-center">
             <canvas id="my-canvas" width="500" height="500" onclick="draw(event)">
                 Update your browser to enjoy canvas!
             </canvas>
         </div>
-        <form class="meme-form" onsubmit="onSubmitForm(event)">
-            
-        </form>
+        <div class="meme-form-container flex column align-center justify-center">
+            <form class="meme-form" onsubmit="onSubmitForm(event)">
+                <div class="text-input-container flex justify-center align-center">
+
+                </div>
+                <div class="text-buttons-container flex align-center justify-center">
+                    <button class="changeTextLine"><img
+                            src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                            onclick="onChangeTextLine()"></button>
+                    <button class="addTextLine"><img src="./icons/add.png" onclick="onAddTextLine()"></button>
+                    <button class="deleteTextLine"><img src="./icons/trash.png" onclick="onDeleteTextLine()"></button>
+                </div>
+                <div class="style-buttons-container grid">
+                    <button class="upSizeFont"><img src="./icons/increaseFont.png"
+                            onclick="onChangeFontSize(+2)"></button>
+                    <button class="downSizeFont"><img src="./icons/decreaseFont.png"
+                            onclick="onChangeFontSize(-2)"></button>
+                    <button class="upTextPos"><img src="./icons/upTextArrow.png" onclick="onChangeLinePos(-2)"></button>
+                    <button class="downTextPos"><img src="./icons/downTextArrow.png"
+                            onclick="onChangeLinePos(+2)"></button>
+                    <button class="align-left"><img src="./icons/align-to-left.png"
+                            onclick="onChangeAlignText('left')"></button>
+                    <button class="align-center"><img src="./icons/align-to-center.png"
+                            onclick="onChangeAlignText('center')"></button>
+                    <button class="align-right"><img src="./icons/align-to-right.png"
+                            onclick="onChangeAlignText('right')"></button>
+                    <select class="font-types" onchange="onChangeFontType(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="David">David</option>
+                    </select>
+                    <label for="font-color" class="font-color"><img src="./icons/paint-board-and-brush.png" /></label>
+                    <input type="color" id="font-color" onchange="onChangeFontColor()">
+                    <label for="stroke-color" class="stroke-color"><img src="./icons/text-stroke.png" /></label>
+                    <input type="color" id="stroke-color" onchange="onChangeStrokeColor()">
+                </div>
+            </form>
+        </div>
+
     </div>
     <script src="./js/storageService.js"></script>
     <script src="./js/galleryController.js"></script>

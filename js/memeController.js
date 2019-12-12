@@ -4,11 +4,27 @@ let gCanvas
 let gCtx, gImg
 
 function onImgClicked(elImg) {
+    document.querySelector('.gallery-container').style.display = 'none';
+    document.querySelector('.editor-container').classList.add('flex');
+    let elMemeFormCont = document.querySelector('.meme-form-container')
     let imgId = +elImg.id;
     setMeme(imgId);
     renderForm();
     gImg = elImg;
     gCanvas = document.querySelector('#my-canvas');
+    if (window.innerWidth/2 > window.innerHeight-100){
+        gCanvas.width = window.innerHeight-160;
+        gCanvas.height = window.innerHeight-160;
+        elMemeFormCont.style.height = window.innerHeight-160
+        elMemeFormCont.style.width = window.innerHeight-160
+    } else {
+        gCanvas.width = window.innerWidth/2-100;
+        gCanvas.height = window.innerWidth/2-100;
+        elMemeFormCont.style.height = window.innerWidth/2-100
+        elMemeFormCont.style.width = window.innerWidth/2-100
+    }  
+    setTextLinePosY(0, 30)
+    setTextLinePosY(1, gCanvas.height-30)
     gCtx = gCanvas.getContext('2d')
     renderCanvas()
 }
@@ -20,13 +36,15 @@ function drawTextLine() {
         let line = text.line;
         let posX
         if (text.align === 'left') {
-            posX = 30;
+            posX = 20;
             gCtx.textAlign = 'left'
         } else if (text.align === "right") {
-            posX = 470;
+            posX = gCanvas.width-20;
+            console.log(posX);
+            
             gCtx.textAlign = 'right'
         } else {
-            posX = 250;
+            posX = gCanvas.width/2;
             gCtx.textAlign = 'center'
         }
         let posY = text.pos.y;
@@ -108,30 +126,10 @@ function onDeleteTextLine() {
 function renderForm() {
     let meme = getMeme();
     let textIdx = meme.selectedTxtIdx;
-    let elForm = document.querySelector('.meme-form');
-    let strHTML = `<input class="text-input" type="text" value="${meme.txts[textIdx].line}" id="text-input" oninput="writeLineToCanvas()">
-            <button class="upSizeFont"><img src="./icons/increaseFont.png" onclick="onChangeFontSize(+2)"></button>
-            <button class="downSizeFont"><img src="./icons/decreaseFont.png" onclick="onChangeFontSize(-2)"></button>
-            <button class="upTextPos"><img src="./icons/upTextArrow.png" onclick="onChangeLinePos(-2)"></button>
-            <button class="downTextPos"><img src="./icons/downTextArrow.png" onclick="onChangeLinePos(+2)"></button>
-            <button class="changeTextLine"><img src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onChangeTextLine()"></button>
-            <button class="addTextLine"><img src="./icons/add.png" onclick="onAddTextLine()"></button>
-            <button class="deleteTextLine"><img src="./icons/trash.png" onclick="onDeleteTextLine()"></button>
-            
-            <button class="align-left"><img src="./icons/align-to-left.png" onclick="onChangeAlignText('left')"></button>
-            <button class="align-center"><img src="./icons/align-to-center.png" onclick="onChangeAlignText('center')"></button>
-            <button class="align-right"><img src="./icons/align-to-right.png" onclick="onChangeAlignText('right')"></button>
-            
-            <select class="font-types" onchange="onChangeFontType(this.value)">
-                <option value="Impact">Impact</option>
-                <option value="Helvetica">Helvetica</option>
-                <option value="David">David</option>
-            </select>
-            <label for="font-color" class="font-color"><img src="./icons/paint-board-and-brush.png"/></label>
-            <input type="color" id="font-color" onchange="onChangeFontColor()">
-            <label for="stroke-color" class="stroke-color"><img src="./icons/text-stroke.png"/></label>
-            <input type="color" id="stroke-color" onchange="onChangeStrokeColor()">`
-    elForm.innerHTML = strHTML
+    let elTextInputCont = document.querySelector('.text-input-container');
+    let strHTML = `<input class="text-input" type="text" value="${meme.txts[textIdx].line}" id="text-input"
+    oninput="writeLineToCanvas()">`
+    elTextInputCont.innerHTML = strHTML
 }
 
 function onChangeFontColor() {

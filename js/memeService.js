@@ -6,7 +6,7 @@ let gMeme = {
     selectedTxtIdx: 0,
     txts: [
         {
-            line: 'Insert Start Here',
+            line: '',
             size: 40,
             font: 'Impact',
             align: 'center',
@@ -33,6 +33,28 @@ let gMeme = {
 }
 
 function createImages() {
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
+    gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
+    gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
     gImgs.push(createImage('./meme-imgs (square)/5.jpg', ['success']))
     gImgs.push(createImage('./meme-imgs (square)/9.jpg', ['mean', 'evil']))
 }
@@ -116,4 +138,8 @@ function changeFontColor(color) {
 function changeAlignText(value) {
     let currTxtLine = gMeme.selectedTxtIdx
     gMeme.txts[currTxtLine].align = value;
+}
+
+function setTextLinePosY(idx, posY) {
+    gMeme.txts[idx].pos.y = posY;
 }

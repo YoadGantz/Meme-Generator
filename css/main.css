@@ -3,6 +3,11 @@
     src: url(../fonts/poppins/Poppins-Regular.ttf);
 }
 
+@font-face {
+    font-family: Poppins-Semi-B;
+    src: url(../fonts/poppins/Poppins-SemiBold.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -20,36 +25,40 @@ header {
     height: 100px;
 }
 
-
 .gallery-img .meme-img {
     border-radius: 10px;
-    height: 100%;
+    height: 200px;
     width: 100%;
 }
 
 #my-canvas {
-    margin: 30px 100px;
+    /* margin: 30px 100px; */
     border: 2px solid black;
 }
 
 .editor-container {
-    /* display: none; */
-    height: 100vh;
+    display: none;
+    height: calc(100vh - 100px);
 }
 
 .canvas-container {
     background-image: url('../imgs/Forme_1.png');
     background-position: center center;
-    width: 700px;
+    width: 50%;
 }
 
-form > button {
-    height: 30px;
-    width: 30px;
+button {
+    height: 50px;
+    width: 50px;
     padding: 0;
 }
 
-img {
+button>img {
+    height: 100%;
+    width: 100%;
+}
+
+label>img {
     height: 100%;
     width: 100%;
 }
@@ -82,7 +91,7 @@ img {
 .gallery-container {
     background-color: #383b42;
     border-radius: 10px;
-    min-height: calc(100vh - 110px);
+    height: calc(100vh - 110px);
     overflow: auto;
 }
 
@@ -90,6 +99,7 @@ img {
     font-size: 1.375rem;
     text-transform: uppercase;
 }
+
 .menu-option {
     cursor: pointer;
     font-size: 1.3125rem;
@@ -136,12 +146,11 @@ img {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 200px);
-    grid-template-rows: 200px;
     gap: 30px;
     margin-left: 60px;
 }
 
-.font-color,.stroke-color {
+.font-color, .stroke-color {
     display: block;
     height: 30px;
     width: 30px;
@@ -149,25 +158,79 @@ img {
 }
 
 .meme-form {
-    height: 500px;
-    width: 500px;    
-    margin-top: 30px;
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
     border-radius: 30px;
-    background-color: rgba(235,238,243, 0.11);
-    padding-top: 40px;
+    background-color: rgba(235, 238, 243, 0.11);
+    padding: 30px;
 }
 
-#font-color,#stroke-color {
+.meme-form-container {
+    width: 50%;
+}
+
+#font-color, #stroke-color {
     display: none;
 }
 
 .text-input {
-    width: 445px;
-    height: 60px;
+    width: calc(100% - 100px);
     background-color: #ebeef3;
     border-radius: 30px;
     color: #3d3d3d;
     font-size: 1.5625rem;
     font-weight: 500;
     text-align: center;
+    box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    margin-bottom: 20px;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.text-buttons-container {
+    margin-bottom: 30px;
+}
+
+.text-buttons-container>*:not(:last-child) {
+    margin-right: 10px;
+}
+
+.text-buttons-container>*:not(:first-child) {
+    margin-left: 10px;
+}
+
+.style-buttons-container {
+    border-radius: 15px;
+    background-color: #19a59f;
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 10px 20px 20px;
+}
+
+.style-buttons-container.grid {
+    grid-template-columns: repeat(4, 50px);
+}
+
+.style-buttons-container>* {
+    height: 50px;
+    width: 50px;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.style-buttons-container select {
+    grid-row: 3;
+    grid-column: 2 / span 3;
+    width: 100%;
+    font-size: 1.6875rem;
+    color: #22252c;
+    text-transform: uppercase;
+    font-family: Poppins-Semi-B;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
 }
