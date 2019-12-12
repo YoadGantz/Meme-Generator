@@ -6,7 +6,7 @@ let gMeme = {
     selectedTxtIdx: 0,
     txts: [
         {
-            line: '',
+            line: 'Insert Start Here',
             size: 40,
             font: 'Impact',
             align: 'center',
@@ -14,7 +14,7 @@ let gMeme = {
             strokeColor: 'black',
             pos: {
                 x: 30,
-                y: 50
+                y: null
             }
         },
         {
@@ -26,7 +26,7 @@ let gMeme = {
             strokeColor: 'black',
             pos: {
                 x: 30,
-                y: 450
+                y: null
             }
         }
     ]
@@ -115,12 +115,12 @@ function changeFontType(fontType) {
 function deleteTextLine() {
     let currTxtLine = gMeme.selectedTxtIdx
     gMeme.txts.splice(currTxtLine, 1);
-    gMeme.selectedTxtIdx--;
+    gMeme.selectedTxtIdx= (gMeme.selectedTxtIdx-1 + gMeme.txts.length)%gMeme.txts.length;
 }
 
-function addTextLine() {
-    let pos = {x: 30, y:200}
-    let text = {line: '', size: 40, font: 'Impact', align:'left', color:'white', pos}
+function addTextLine(posY, posX) {
+    let pos = {x: posX, y: posY}
+    let text = {line: '', size: 40, font: 'Impact', align:'center', color:'white', pos}
     gMeme.txts.push(text)
     gMeme.selectedTxtIdx = gMeme.txts.length-1;
 }
@@ -141,5 +141,5 @@ function changeAlignText(value) {
 }
 
 function setTextLinePosY(idx, posY) {
-    gMeme.txts[idx].pos.y = posY;
+    gMeme.txts[idx].pos.y = posY;    
 }

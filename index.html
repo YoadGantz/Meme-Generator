@@ -11,14 +11,18 @@
 
 <body onload="init()">
     <header class="flex align-center container">
-        <nav class="navbar flex space-between">
+        <div class="screen" onclick="toggleMenu()"></div>
+        <nav class="navbar flex align-center space-between">
             <h1 class="logo">Meme Gen</h1>
+            <div class="burger flex align-center justify-center">
+                <img onclick="toggleMenu()" src="./icons/burger.png">
+            </div>
             <ul class="tabs flex align-center clean-list">
-                <li class="gallery-tab"><a class="menu-option flex align-center justify-center active"
+                <li class="tab gallery-tab"><a class="menu-option flex align-center justify-center active"
                         onclick="onActive(this)">Gallery</a></li>
-                <li class="memes-tab"><a class="menu-option flex align-center justify-center"
+                <li class="tab memes-tab"><a class="menu-option flex align-center justify-center"
                         onclick="onActive(this)">Memes</a></li>
-                <li class="about-tab"><a class="menu-option flex align-center justify-center"
+                <li class="tab about-tab"><a class="menu-option flex align-center justify-center"
                         onclick="onActive(this)">About</a></li>
             </ul>
         </nav>
@@ -26,7 +30,7 @@
     <div class="gallery-container container">
         <section class="search-keywords">
             <form action="" onsubmit="onSubmitForm()">
-                <input type="search" value="Search" class="keywords-searcher">
+                <input type="search" placeholder="Search" class="keywords-searcher">
             </form>
             <div class="keywords">
 
@@ -36,9 +40,9 @@
 
         </div>
     </div>
-    <div class="editor-container">
+    <div class="editor-container wrap">
         <div class="canvas-container flex align-center justify-center">
-            <canvas id="my-canvas" width="500" height="500" onclick="draw(event)">
+            <canvas id="my-canvas" width="100" height="100">
                 Update your browser to enjoy canvas!
             </canvas>
         </div>

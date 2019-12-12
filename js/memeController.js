@@ -12,19 +12,26 @@ function onImgClicked(elImg) {
     renderForm();
     gImg = elImg;
     gCanvas = document.querySelector('#my-canvas');
-    if (window.innerWidth/2 > window.innerHeight-100){
-        gCanvas.width = window.innerHeight-160;
-        gCanvas.height = window.innerHeight-160;
-        elMemeFormCont.style.height = window.innerHeight-160
-        elMemeFormCont.style.width = window.innerHeight-160
+    if (window.innerWidth < 800) {
+        let size = window.innerWidth
+        elMemeFormCont.style.height = size - 30;
+        elMemeFormCont.style.width = size - 30;
+        gCanvas.width = size - 30;
+        gCanvas.height = size - 30;
+    } else if (window.innerWidth / 2 > window.innerHeight - 100) {
+        gCanvas.width = window.innerHeight - 160;
+        gCanvas.height = window.innerHeight - 160;
+        elMemeFormCont.style.height = window.innerHeight - 160;
+        elMemeFormCont.style.width = window.innerHeight - 160;
     } else {
-        gCanvas.width = window.innerWidth/2-100;
-        gCanvas.height = window.innerWidth/2-100;
-        elMemeFormCont.style.height = window.innerWidth/2-100
-        elMemeFormCont.style.width = window.innerWidth/2-100
-    }  
-    setTextLinePosY(0, 30)
-    setTextLinePosY(1, gCanvas.height-30)
+        gCanvas.width = window.innerWidth / 2 - 100;
+        gCanvas.height = window.innerWidth / 2 - 100;
+        elMemeFormCont.style.height = window.innerWidth / 2 - 100;
+        elMemeFormCont.style.width = window.innerWidth / 2 - 100;
+
+    }
+    setTextLinePosY(0, 50)
+    setTextLinePosY(1, gCanvas.height - 30)
     gCtx = gCanvas.getContext('2d')
     renderCanvas()
 }
@@ -39,12 +46,10 @@ function drawTextLine() {
             posX = 20;
             gCtx.textAlign = 'left'
         } else if (text.align === "right") {
-            posX = gCanvas.width-20;
-            console.log(posX);
-            
+            posX = gCanvas.width - 20;
             gCtx.textAlign = 'right'
         } else {
-            posX = gCanvas.width/2;
+            posX = gCanvas.width / 2;
             gCtx.textAlign = 'center'
         }
         let posY = text.pos.y;
@@ -112,7 +117,9 @@ function onChangeFontType(fontType) {
 }
 
 function onAddTextLine() {
-    addTextLine();
+    let canvasHeightCenter = gCanvas.height / 2
+    let canvasWidthCenter = gCanvas.width / 2
+    addTextLine(canvasHeightCenter, canvasWidthCenter);
     renderCanvas();
     renderForm();
 }
@@ -126,8 +133,9 @@ function onDeleteTextLine() {
 function renderForm() {
     let meme = getMeme();
     let textIdx = meme.selectedTxtIdx;
+    let value = (meme.txts[textIdx]) ? meme.txts[textIdx].line : ''
     let elTextInputCont = document.querySelector('.text-input-container');
-    let strHTML = `<input class="text-input" type="text" value="${meme.txts[textIdx].line}" id="text-input"
+    let strHTML = `<input class="text-input" type="text" value="${value}" id="text-input"
     oninput="writeLineToCanvas()">`
     elTextInputCont.innerHTML = strHTML
 }
