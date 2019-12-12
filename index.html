@@ -23,7 +23,7 @@
                 <li class="tab memes-tab"><a class="menu-option flex align-center justify-center"
                         onclick="onMemesTab(this)">Memes</a></li>
                 <li class="tab about-tab"><a class="menu-option flex align-center justify-center"
-                        onclick="onActive(this)">About</a></li>
+                        onclick="onAboutTab(this)">About</a></li>
             </ul>
         </nav>
     </header>
@@ -41,11 +41,15 @@
         </div>
     </div>
     <div class="editor-container wrap">
-        <!-- <div class="markers-container"></div> -->
-        <div class="canvas-container flex align-center justify-center">
-            <canvas id="my-canvas" width="100" height="100">
-                Update your browser to enjoy canvas!
-            </canvas>
+        <div class="canvas-and-mark-container flex align-center justify-center">
+            <div class="canvas-container">
+                <canvas id="my-canvas" width="100" height="100">
+                    Update your browser to enjoy canvas!
+                </canvas>
+                <div class="markers-container">
+                    
+                </div>
+            </div>
         </div>
         <div class="meme-form-container flex column align-center justify-center">
             <form class="meme-form" action="" method="POST" enctype="multipart/form-data"
@@ -110,6 +114,7 @@
 
         </div>
     </div>
+    <div class="about-container container">This Tab is in dev stages, come back later</div>
     <script src="./js/storageService.js"></script>
     <script src="./js/upload-service.js"></script>
     <script src="./js/galleryController.js"></script>

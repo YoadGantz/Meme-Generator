@@ -6,8 +6,10 @@ let gCtx, gImg
 function onImgClicked(elImg) {
     document.querySelector('.gallery-container').style.display = 'none';
     document.querySelector('.saved-memes-container').style.display = 'none';
+    document.querySelector('.about-container').style.display = 'none';
     document.querySelector('.editor-container').classList.add('flex');
     let elMemeFormCont = document.querySelector('.meme-form-container')
+    let elCanvasCont = document.querySelector('.canvas-container');
     let imgId = +elImg.id;
     setMeme(imgId);
     renderForm();
@@ -17,16 +19,22 @@ function onImgClicked(elImg) {
         let size = window.innerWidth
         elMemeFormCont.style.height = size - 30;
         elMemeFormCont.style.width = size - 30;
+        elCanvasCont.style.width = gCanvas.width;
+        elCanvasCont.style.height = gCanvas.height;
         gCanvas.width = size - 30;
         gCanvas.height = size - 30;
     } else if (window.innerWidth / 2 > window.innerHeight - 100) {
         gCanvas.width = window.innerHeight - 160;
         gCanvas.height = window.innerHeight - 160;
+        elCanvasCont.style.width = gCanvas.width;
+        elCanvasCont.style.height = gCanvas.height;
         elMemeFormCont.style.height = window.innerHeight - 160;
         elMemeFormCont.style.width = window.innerHeight - 160;
     } else {
         gCanvas.width = window.innerWidth / 2 - 100;
         gCanvas.height = window.innerWidth / 2 - 100;
+        elCanvasCont.style.width = gCanvas.width;
+        elCanvasCont.style.height = gCanvas.height;
         elMemeFormCont.style.height = window.innerWidth / 2 - 100;
         elMemeFormCont.style.width = window.innerWidth / 2 - 100;
 
@@ -101,11 +109,13 @@ function onChangeFontSize(diff) {
 function onChangeTextLine() {
     changeTextLine()
     renderForm();
+    highlightCurrTxtLine();
 }
 
 function renderCanvas() {
     drawImg();
     drawTextLine();
+    highlightCurrTxtLine();
 }
 
 function onSubmitForm(event) {
@@ -168,4 +178,18 @@ function downloadCanvas(elLink) {
 function onSaveMeme() {
     const data = gCanvas.toDataURL('image/jpeg')
     saveMeme(data)
+}
+
+function highlightCurrTxtLine() {
+    let meme = getMeme();
+    let elMarkersCont = document.querySelector('.markers-container');
+    if (meme.txts.length) {
+        let txtIdx = meme.selectedTxtIdx;
+        let text = meme.txts[txtIdx];
+        let fontSize = text.size;
+        let posY = text.pos.y;
+        elMarkersCont.innerHTML = `<div class="marker" style="top: ${posY - fontSize}px; height:${fontSize + 10}px"></div>`
+    } else {
+        elMarkersCont.innerHTML = ``
+    }
 }
