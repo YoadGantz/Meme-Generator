@@ -101,6 +101,14 @@ label>img {
     justify-content: space-between;
 }
 
+footer {
+    font-weight: 500;
+    color: #ffffff;
+    width: 100%;
+    height: 30px;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+}
+
 .navbar {
     font-weight: 500;
     color: #ffffff;
@@ -115,7 +123,8 @@ label>img {
 .gallery-container, .saved-memes-container, .about-container {
     background-color: #383b42;
     border-radius: 10px;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 140px);
+    margin-bottom: 10px;
     overflow: auto;
 }
 
