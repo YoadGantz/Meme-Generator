@@ -2,8 +2,10 @@
 
 function renderSavedMemes() {
     let elSavedMemes = document.querySelector('.saved-memes');
-    let savedMemes = getSavedMemes();    
-    if (savedMemes.length) {
+    let savedMemes = getSavedMemes();
+    console.log(savedMemes);
+    
+    if (savedMemes) {
         let imgsUrls = savedMemes.map(function (savedMeme) {
             let imgHTML = `<div class="saved-meme-img"><img class="meme-img" src="${savedMeme}"/></div>`
             return imgHTML;

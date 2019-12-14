@@ -1,5 +1,6 @@
-const gKeywordsConterMap = { 'happy': 12, 'funny puk': 1 }
+let gKeywordsCounterMap = {}
 const gImgs = [];
+let gKeywordSearch;
 let gSavedMemes;
 let gNextId = 1;
 let gMeme = {
@@ -62,8 +63,12 @@ function createImage(url, keywords) {
     };
 }
 
-function getImages() {
-    return gImgs;
+function getImagesToRender() {
+    let imgsToRender = gImgs.filter(function (img) {
+        if (!gKeywordSearch) return img;
+        if (img.keywords.includes(gKeywordSearch)) return img;
+    })
+    return imgsToRender;
 }
 
 function getCurrImg() {
@@ -150,6 +155,7 @@ function saveMeme(data) {
 
 function saveData() {
     saveToStorage('gSavedMemes', gSavedMemes);
+    saveToStorage('gKeywordsCounterMap', gKeywordsCounterMap);
 }
 
 function getSavedMemes() {
@@ -158,4 +164,18 @@ function getSavedMemes() {
 
 function loadData() {
     gSavedMemes = loadFromStorage('gSavedMemes', [])
+    gKeywordsCounterMap = loadFromStorage('gKeywordsCounterMap', {})
+}
+
+function setKeywordSearch(value) {
+    gKeywordSearch = value;
+}
+
+function updateKeywordsCounterMap(value) {
+    gKeywordsCounterMap[value] = (gKeywordsCounterMap[value] || 0) + 1;
+    saveData();
+}
+
+function getKeywordsMap() {
+    return gKeywordsCounterMap;
 }

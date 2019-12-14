@@ -28,11 +28,11 @@
         </nav>
     </header>
     <div class="gallery-container container">
-        <section class="search-keywords">
-            <form action="" onsubmit="onSubmitForm()">
-                <input type="search" placeholder="Search" class="keywords-searcher">
+        <section class="search-keywords flex">
+            <form class="search-input-container" action="" onsubmit="onSubmitForm(event)">
+                <input type="search" placeholder="Search" class="keywords-searcher" onchange="onKeywordSearch(event.target.value)">
             </form>
-            <div class="keywords">
+            <div class="keywords flex align-center">
 
             </div>
         </section>

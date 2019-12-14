@@ -56,7 +56,8 @@ header {
 
 .editor-container {
     display: none;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 130px);
+    margin-bottom: 20px;
 }
 
 .canvas-and-mark-container {
@@ -198,19 +199,41 @@ a {
     color: inherit;
 }
 
+.search-input-container {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.keyword {
+    color: #ffffff;
+    margin: 5px;
+    font-weight: 300;
+}
+
 .keywords-searcher {
     color: #fefefe;
     font-size: 1.3125rem;
     opacity: 0.38;
     border-radius: 29px;
     height: 3rem;
-    width: 33%;
+    width: 100%;
     background-color: #22252c;
     padding-left: 20px;
     padding-right: 20px;
 }
 
+.keywords {
+    background-color: rgba(254, 254, 254, 0.4);
+    font-size: 1rem;
+    border-radius: 29px;
+    height: 3rem;
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .search-keywords {
+    width: calc(100% - 50px);
     padding: 25px;
 }
 
@@ -395,7 +418,7 @@ a {
         transition: opacity .6s;
         z-index: 1;
     }
-    .menu-open .tabs {
+    .keywords .menu-open .tabs {
         transform: translate(0);
     }
     .menu-open .screen {
@@ -418,6 +441,9 @@ a {
         gap: 30px;
         margin-left: 10px;
         margin-right: 10px;
+    }
+    .search-keywords {
+        flex-direction: column;
     }
     .keywords-searcher {
         width: 100%;

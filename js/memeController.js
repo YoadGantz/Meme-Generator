@@ -120,8 +120,6 @@ function renderCanvas() {
 
 function onSubmitForm(event) {
     event.preventDefault();
-    // let fontColor = document.querySelector('#font-color').value
-    // console.log(fontColor);
 }
 
 function onChangeFontType(fontType) {
